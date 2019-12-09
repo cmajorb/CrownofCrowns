@@ -1,0 +1,14 @@
+version: "2"
+services:
+  app:
+    build: ./Python
+    links:
+      - db
+    ports:
+      - "9000:9000"
+  db:
+    build: ./mysql
+  home:
+    build: ./build
+    ports:
+      - "80:80"
