@@ -12,3 +12,5 @@ services:
     build: ./build
     ports:
       - "80:80"
+    volumes:
+      - ./build:/usr/share/nginx/html

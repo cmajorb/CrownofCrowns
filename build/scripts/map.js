@@ -57,7 +57,19 @@ $('#colorgrid').click(function(e) {
     var c = this.getContext('2d');
     var p = c.getImageData(x, y, 1, 1).data;
     var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-    alert(hex);
+    for(var i = 0; i<loc.length;i++) {
+      if(loc[i].Color==hex) {
+        name = loc[i].Location;
+        var group = loc[i].Group;
+        var def = loc[i].Defense;
+        var mil = loc[i].Military_Cards;
+        var act = loc[i].Action_Cards;
+        var res = loc[i].Resource_Cards;
+
+        var geo = loc[i].Geography;
+      }
+    }
+    alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res);
 });
 
 $(document).ready(function(){
