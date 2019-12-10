@@ -4,11 +4,12 @@ from flask_cors import CORS, cross_origin
 from argparse import ArgumentParser
 from flask_restful import Api
 from get_map_locations import get_map_locations
+from purchase import purchase
 # Set ''default'' parameters for database connections
 params = {'user': 'root',
           'host': 'db',
           'db': 'mysql',
-          'password': 'gpsc9926'}
+          'password': 'root'}
 
 # parse command line (or dockerfile) modifications to the default params
 parser = ArgumentParser()
@@ -38,6 +39,8 @@ def main():
 
 #api.add_resource(get_mapppings, '/get_mappings', methods=['GET'])
 api.add_resource(get_map_locations, '/get_map_locations',
+                 methods=['GET'], resource_class_kwargs={"db_params": params})
+api.add_resource(purchase, '/purchase',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 
 app.debug = True

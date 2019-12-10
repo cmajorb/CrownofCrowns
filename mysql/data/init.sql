@@ -9,7 +9,14 @@ CREATE TABLE `Map` (
   `Military_Cards` int(11) DEFAULT NULL,
   `Action_Cards` int(11) DEFAULT NULL,
   `Defense` int(11) DEFAULT NULL,
-  `Color` varchar(10) DEFAULT NULL
+  `Color` varchar(10) DEFAULT NULL,
+  `Location1` varchar(10) DEFAULT NULL,
+  `Location2` varchar(10) DEFAULT NULL,
+  `Location3` varchar(10) DEFAULT NULL,
+  `Occupants` int(11) DEFAULT NULL,
+  `Owner` int(11) DEFAULT NULL,
+  `Influence` int(11) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 

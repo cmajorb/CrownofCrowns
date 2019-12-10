@@ -16,6 +16,30 @@ function rgbToHex(r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }
 
+function generateMap() {
+  $.getJSON('http://localhost:9000/get_map_locations', function(data) {
+    var i;
+    loc = data;
+
+    var canvas = document.getElementById('map');
+    var context = canvas.getContext('2d');
+    var radius = 7;
+    var xcoor;
+    var ycoor;
+
+    for(i = 0; i<data.length; i++) {
+      if(data[i].Influence > 0) {
+        xcoor = data[i].Location1.split(",")[0];
+        ycoor = data[i].Location1.split(",")[1];
+        context.beginPath();
+        context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = 'green';
+        context.fill();
+        context.stroke();
+      }
+    }
+  });
+}
 
 window.onload = function() {
     var map = document.getElementById("map");
@@ -38,7 +62,7 @@ $('#colorgrid').mousemove(function(e) {
     var pos = findPos(this);
     var x = e.pageX - pos.x;
     var y = e.pageY - pos.y;
-    var coord = "x=" + x + ", y=" + y;
+    coord = x +","+y;
     var c = this.getContext('2d');
     var p = c.getImageData(x, y, 1, 1).data;
     var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
@@ -50,6 +74,7 @@ $('#colorgrid').mousemove(function(e) {
     $('#status').html(coord + "<br>" + name + "<br>"+hex);
 });
 var loc;
+var coord;
 $('#colorgrid').click(function(e) {
     var pos = findPos(this);
     var x = e.pageX - pos.x;
@@ -65,21 +90,19 @@ $('#colorgrid').click(function(e) {
         var mil = loc[i].Military_Cards;
         var act = loc[i].Action_Cards;
         var res = loc[i].Resource_Cards;
-
         var geo = loc[i].Geography;
+        var id = loc[i].ID;
+        var influence = loc[i].Influence;
       }
     }
-    alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res);
+    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount='+(influence+1), function(data) {
+      generateMap();
+    });
+    alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
 });
 
 $(document).ready(function(){
-  $.getJSON('http://localhost:9000/get_map_locations', function(data) {
-    var i;
-    loc = data;
-    for(i = 0; i<data.length; i++) {
-      $("#itemTable").append("<tr><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td></tr>");
-    }
-  });
+  generateMap();
   $("#itemInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#itemTable tr").filter(function() {
