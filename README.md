@@ -1,7 +1,11 @@
-Starting the Server:
+How to run the Server:
 
-Make sure you have Docker installed
-Run the following command:
+Install Docker Desktop https://hub.docker.com/?overlay=onboarding
+Install git -- See here for tutorial: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+Clone this repository -- See here for tutorial https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
+Make sure Docker Desktop is running (Just open it up)
+
+Run the following command in your terminal in the root directory of this project:
 docker-compose up --build -d
 
-Access the site at localhost
+Access the site by navigating to http://localhost on your browser
