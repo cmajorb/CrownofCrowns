@@ -1,11 +1,14 @@
 
 #wrapper{
-    float:left;
-    width:1200px;
-    height:800px;
+  float:left;
+  position:relative;
+  width:1200px;
+  height:800px;
+  border-style:solid;
+  margin:10px;
 }
 #map,#colorgrid{
-    position:absolute; top:50px; left:10px;
+  position:absolute; top:0px; left:0px;
 
 }
 #map {
@@ -39,7 +42,7 @@
   height:900px;
 }
 
-#status {
+.tile {
   background-color:#d2aa77;
   border-style:solid;
   border-color:#c99157;
@@ -50,10 +53,15 @@
 }
 #title {
   text-align:center;
-  margin:1px;
+  margin-top:10px;
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: black;
+  background-color:rgba(0, 0, 0,  0.1);
+  color:white;
 
 
 }
 body {
     margin:0;
+    background-image: url("http://localhost/images/background.jpeg");
 }

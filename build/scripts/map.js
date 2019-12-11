@@ -111,7 +111,8 @@ $('#colorgrid').click(function(e) {
         var influence = loc[i].Influence;
       }
     }
-    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount='+(influence+1), function(data) {
+    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount=1&player=1', function(data) {
+      $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
       generateMap();
     });
     //alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
@@ -119,6 +120,10 @@ $('#colorgrid').click(function(e) {
 
 $(document).ready(function(){
   generateMap();
+  $.getJSON('http://localhost:9000/get_player_stats', function(data) {
+    $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
+
+  });
   $.getJSON('http://localhost:9000/get_players', function(data) {
     for(i = 0; i<data.length; i++) {
       data[i].Name;

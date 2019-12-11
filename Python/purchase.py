@@ -19,17 +19,25 @@ class purchase(Resource):
             amount = request.args.get('amount')
             location = request.args.get('location')
             if item == "1":
-                query_row_string = """
+                query1 = """
                 UPDATE Map
-                SET Influence = """ + amount + """
+                SET Influence = Influence + """ + amount + """
                 WHERE ID = """ + location + """;
+                """
+                query2 = """
+                UPDATE Users
+                SET Influence = Influence - """ + amount + """
+                WHERE ID = """+ player + """;
                 """
             else:
                 return "Unknown item"
-            cursor.execute(query_row_string)
+            cursor.execute(query1)
             conn.commit()
-            query2 = "SELECT * FROM Map WHERE ID="+location+";"
             cursor.execute(query2)
+            conn.commit()
+            query3 = "SELECT * FROM Users WHERE ID=1;"
+            cursor.execute(query3)
             row = cursor.fetchall()
             response = Response(json.dumps(row), status=200, mimetype='application/json')
+
             return response

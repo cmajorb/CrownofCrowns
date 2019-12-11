@@ -23,7 +23,13 @@ CREATE TABLE `Users` (
   `ID` int(11) DEFAULT NULL,
   `Name` varchar(50) DEFAULT NULL,
   `House` varchar(50) DEFAULT NULL,
-  `Color` varchar(10) DEFAULT NULL
+  `Color` varchar(10) DEFAULT NULL,
+  `Influence` int(11) DEFAULT NULL,
+  `Dentre` int(11) DEFAULT NULL,
+  `Food` int(11) DEFAULT NULL,
+  `Supplies` int(11) DEFAULT NULL
+
+
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

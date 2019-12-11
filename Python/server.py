@@ -6,6 +6,7 @@ from flask_restful import Api
 from get_map_locations import get_map_locations
 from purchase import purchase
 from get_players import get_players
+from get_player_stats import get_player_stats
 # Set ''default'' parameters for database connections
 params = {'user': 'root',
           'host': 'db',
@@ -44,7 +45,8 @@ api.add_resource(purchase, '/purchase',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 api.add_resource(get_players, '/get_players',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
-
+api.add_resource(get_player_stats, '/get_player_stats',
+                 methods=['GET'], resource_class_kwargs={"db_params": params})
 app.debug = True
 
 app.run(host='0.0.0.0', port='9000', threaded=True)
