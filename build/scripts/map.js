@@ -36,6 +36,22 @@ function generateMap() {
         context.fillStyle = 'green';
         context.fill();
         context.stroke();
+
+        xcoor = data[i].Location2.split(",")[0];
+        ycoor = data[i].Location2.split(",")[1];
+        context.beginPath();
+        context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = 'yellow';
+        context.fill();
+        context.stroke();
+
+        xcoor = data[i].Location3.split(",")[0];
+        ycoor = data[i].Location3.split(",")[1];
+        context.beginPath();
+        context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = 'red';
+        context.fill();
+        context.stroke();
       }
     }
   });
@@ -98,15 +114,16 @@ $('#colorgrid').click(function(e) {
     $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount='+(influence+1), function(data) {
       generateMap();
     });
-    alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
+    //alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
 });
 
 $(document).ready(function(){
   generateMap();
-  $("#itemInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#itemTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
+  $.getJSON('http://localhost:9000/get_players', function(data) {
+    for(i = 0; i<data.length; i++) {
+      data[i].Name;
+      $("#playerList").append("<li style='border-left: 20px solid; border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></li>");
+
+    }
   });
 });

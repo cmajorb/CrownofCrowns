@@ -2,37 +2,37 @@
 1;"Karlun";"North Karlun";"Forest";1;3;2;2;2;"#ea9443";"64,185";"161,190";"88,264";0;0;0
 2;"Karlun";"South Karlun";"Lowlands";1;2;1;1;0;"#a56732";"69,311";"148,315";"108,373";0;0;0
 3;"Karlun";"Westerfeld";"Lowlands";1;2;1;1;0;"#6065ae";"159,69";"233,108";"269,61";0;0;0
-4;"Tailaine";"Ceranbrowe";"Lowlands";1;4;3;1;0;"#cbb49a";"NULL";"NULL";"NULL";0;0;0
-5;"Greatrock";"Telby";"Lowlands";1;4;1;2;0;"#2ca397";"NULL";"NULL";"NULL";0;0;0
+4;"Tailaine";"Ceranbrowe";"Lowlands";1;4;3;1;0;"#cbb49a";"270,476";"228,431";"228,569";0;0;0
+5;"Greatrock";"Telby";"Lowlands";1;4;1;2;0;"#2ca397";"197,662";"121,661";"177,706";0;0;0
 6;"Greatrock";"Sprinwick";"Highlands";1;2;1;1;1;"#5b5fab";"320,63";"303,101";"429,90";0;0;0
 7;"Fayshell";"Henton";"Lowlands";1;6;1;1;0;"#4b589e";"306,210";"337,182";"288,138";0;0;0
-8;"The Keeper";"Walhorn";"Forest";1;3;1;2;2;"#365a37";"NULL";"NULL";"NULL";0;0;0
-9;"The Keeper";"Blackford";"Highlands";1;1;1;1;1;"#26251f";"NULL";"NULL";"NULL";0;0;0
-10;"Timander";"Upper Yent";"Forest";0;4;1;1;2;"#325b36";"NULL";"NULL";"NULL";0;0;0
-11;"Timander";"Lower Yent";"Forest";0;2;1;1;2;"#2c522f";"NULL";"NULL";"NULL";0;0;0
-12;"Timander";"Tullford";"Lowlands";0;3;1;1;0;"#466c48";"NULL";"NULL";"NULL";0;0;0
-13;"Summerhold";"Noranhurst";"Dale";0;4;3;1;0;"#d3b94f";"NULL";"NULL";"NULL";0;0;0
-14;"Riverend";"The Raines";"Dale";1;7;1;1;0;"#18675d";"NULL";"NULL";"NULL";0;0;0
+8;"The Keeper";"Walhorn";"Forest";1;3;1;2;2;"#365a37";"284,386";"283,304";"355,299";0;0;0
+9;"The Keeper";"Blackford";"Highlands";1;1;1;1;1;"#26251f";"279,663";"326,682";"356,565";0;0;0
+10;"Timander";"Upper Yent";"Forest";0;4;1;1;2;"#325b36";"403,185";"402,136";"459,170";0;0;0
+11;"Timander";"Lower Yent";"Forest";0;2;1;1;2;"#2c522f";"396,258";"456,225";"434,284";0;0;0
+12;"Timander";"Tullford";"Lowlands";0;3;1;1;0;"#466c48";"487,402";"536,412";"421,329";0;0;0
+13;"Summerhold";"Noranhurst";"Dale";0;4;3;1;0;"#d3b94f";"430,545";"542,568";"494,473";0;0;0
+14;"Riverend";"The Raines";"Dale";1;7;1;1;0;"#18675d";"440,663";"467,686";"387,641";0;0;0
 15;"The Coven";"Ryvenstay";"Highlands";1;4;1;1;1;"#535ea7";"480,58";"509,78";"613,81";0;0;0
-16;"The Coven";"Greenhedge";"Dale";0;4;1;1;0;"#4ab848";"NULL";"NULL";"NULL";0;0;0
-17;"Larynhille";"The Thronelands";"Dale";0;8;1;3;0;"#b39b32";"NULL";"NULL";"NULL";0;0;0
-18;"Longford";"Merefeld";"Dale";0;7;1;1;0;"#c7ad3d";"NULL";"NULL";"NULL";0;0;0
-19;"Longford";"Talerton";"Forest";0;3;1;1;2;"#7c8942";"NULL";"NULL";"NULL";0;0;0
-20;"Longford";"Londale";"Dale";1;3;1;1;0;"#1e5266";"NULL";"NULL";"NULL";0;0;0
-21;"Archdale";"Fericstead";"Highlands";1;6;1;1;1;"#0c1f11";"NULL";"NULL";"NULL";0;0;0
-22;"Archdale";"The Shades";"Dale";0;5;1;1;0;"#86bca1";"NULL";"NULL";"NULL";0;0;0
-23;"Archdale";"Senderton";"Lowlands";0;4;1;1;0;"#889150";"NULL";"NULL";"NULL";0;0;0
-24;"Almery Keep";"Long Landing";"Lowlands";1;4;1;1;0;"#407a8c";"NULL";"NULL";"NULL";0;0;0
-25;"Burnefirthe";"Warring";"Forest";1;4;1;1;2;"#69b089";"NULL";"NULL";"NULL";0;0;0
-26;"Clearock";"Rinton";"Lowlands";1;5;1;1;0;"#86c0be";"NULL";"NULL";"NULL";0;0;0
-27;"Peron";"Upper Cualar";"Forest";1;2;1;1;2;"#b1ceb2";"NULL";"NULL";"NULL";0;0;0
-28;"Peron";"Lower Cualar";"Lowlands";1;7;1;1;0;"#6f4c8f";"NULL";"NULL";"NULL";0;0;0
-29;"The Watcher";"The Drunelands";"Desert";1;4;1;1;1;"#433254";"NULL";"NULL";"NULL";0;0;0
-30;"The Grey";"Helder";"Highlands";1;1;1;1;1;"#a3dbe1";"NULL";"NULL";"NULL";0;0;0
-31;"The Grey";"Weldown";"Highlands";1;4;1;1;1;"#8abfc1";"NULL";"NULL";"NULL";0;0;0
-32;"The Grey";"Lewry";"Highlands";1;2;1;1;1;"#6d7b7a";"NULL";"NULL";"NULL";0;0;0
-33;"The Watcher";"Sharoc";"Desert";1;1;1;1;1;"#9f6c28";"NULL";"NULL";"NULL";0;0;0
-34;"Last End";"Last End";"Castle";0;2;2;3;3;"#9caba9";"NULL";"NULL";"NULL";0;0;0
+16;"The Coven";"Greenhedge";"Dale";0;4;1;1;0;"#4ab848";"599,168";"671,148";"579,125";0;0;0
+17;"Larynhille";"The Thronelands";"Dale";0;8;1;3;0;"#b39b32";"553,304";"615,309";"563,250";0;0;0
+18;"Longford";"Merefeld";"Dale";0;7;1;1;0;"#c7ad3d";"623,409";"591,361";"662,357";0;0;0
+19;"Longford";"Talerton";"Forest";0;3;1;1;2;"#7c8942";"642,537";"684,575";"655,465";0;0;0
+20;"Longford";"Londale";"Dale";1;3;1;1;0;"#1e5266";"563,681";"636,677";"593,617";0;0;0
+21;"Archdale";"Fericstead";"Highlands";1;6;1;1;1;"#0c1f11";"717,108";"668,69";"770,131";0;0;0
+22;"Archdale";"The Shades";"Dale";0;5;1;1;0;"#86bca1";"777,331";"827,349";"720,282";0;0;0
+23;"Archdale";"Senderton";"Lowlands";0;4;1;1;0;"#889150";"751,529";"810,532";"746,453";0;0;0
+24;"Almery Keep";"Long Landing";"Lowlands";1;4;1;1;0;"#407a8c";"739,689";"776,626";"816,591";0;0;0
+25;"Burnefirthe";"Warring";"Forest";1;4;1;1;2;"#69b089";"793,225";"811,152";"869,185";0;0;0
+26;"Clearock";"Rinton";"Lowlands";1;5;1;1;0;"#86c0be";"874,304";"874,345";"1050,309";0;0;0
+27;"Peron";"Upper Cualar";"Forest";1;2;1;1;2;"#b1ceb2";"964,456";"927,515";"988,390";0;0;0
+28;"Peron";"Lower Cualar";"Lowlands";1;7;1;1;0;"#6f4c8f";"923,609";"1011,548";"880,643";0;0;0
+29;"The Watcher";"The Drunelands";"Desert";1;4;1;1;1;"#433254";"1022,723";"1030,752";"963,761";0;0;0
+30;"The Grey";"Helder";"Highlands";1;1;1;1;1;"#a3dbe1";"875,90";"983,89";"1030,53";0;0;0
+31;"The Grey";"Weldown";"Highlands";1;4;1;1;1;"#8abfc1";"930,176";"986,130";"930,126";0;0;0
+32;"The Grey";"Lewry";"Highlands";1;2;1;1;1;"#6d7b7a";"1041,198";"1008,245";"1099,66";0;0;0
+33;"The Watcher";"Sharoc";"Desert";1;1;1;1;1;"#9f6c28";"1077,710";"1093,773";"1149,771";0;0;0
+34;"Last End";"Last End";"Castle";0;2;2;3;3;"#9caba9";"831,401";"917,392";"873,430";0;0;0
 35;"Trade Route";"Qont";"NULL";NULL;NULL;NULL;NULL;NULL;"#9150a0";"NULL";"NULL";"NULL";0;0;0
 36;"Trade Route";"Tyrne";"NULL";NULL;NULL;NULL;NULL;NULL;"#cb3764";"NULL";"NULL";"NULL";0;0;0
 37;"Trade Route";"Tuos";"NULL";NULL;NULL;NULL;NULL;NULL;"#2a8876";"NULL";"NULL";"NULL";0;0;0
@@ -47,11 +47,6 @@
 46;"Sea";"Sea 7";"NULL";NULL;NULL;NULL;NULL;NULL;"#22449c";"NULL";"NULL";"NULL";0;0;0
 47;"Sea";"Sea 8";"NULL";NULL;NULL;NULL;NULL;NULL;"#2c3e8f";"NULL";"NULL";"NULL";0;0;0
 48;"Sea";"Sea 9";"NULL";NULL;NULL;NULL;NULL;NULL;"#6c7cbc";"NULL";"NULL";"NULL";0;0;0
-49;"Sea";"Sea 10";"NULL";NULL;NULL;NULL;NULL;NULL;"#657bbc";"NULL";"NULL";"NULL";0;0;0
-50;"Sea";"Sea 11";"NULL";NULL;NULL;NULL;NULL;NULL;"#6679a6";"NULL";"NULL";"NULL";0;0;0
-51;"Sea";"Sea 12";"NULL";NULL;NULL;NULL;NULL;NULL;"#122047";"NULL";"NULL";"NULL";0;0;0
-52;"Sea";"Sea 13";"NULL";NULL;NULL;NULL;NULL;NULL;"#6688c5";"NULL";"NULL";"NULL";0;0;0
-53;"Null";"Null Territory";"NULL";NULL;NULL;NULL;NULL;NULL;"#f0f6ef";"NULL";"NULL";"NULL";0;0;0
 49;"Sea";"Sea 10";"NULL";NULL;NULL;NULL;NULL;NULL;"#657bbc";"NULL";"NULL";"NULL";0;0;0
 50;"Sea";"Sea 11";"NULL";NULL;NULL;NULL;NULL;NULL;"#6679a6";"NULL";"NULL";"NULL";0;0;0
 51;"Sea";"Sea 12";"NULL";NULL;NULL;NULL;NULL;NULL;"#122047";"NULL";"NULL";"NULL";0;0;0

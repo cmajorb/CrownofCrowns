@@ -1,11 +1,11 @@
 
 #wrapper{
-    position:relative;
+    float:left;
     width:1200px;
     height:800px;
 }
 #map,#colorgrid{
-    position:absolute; top:0px; left:0px;
+    position:absolute; top:50px; left:10px;
 
 }
 #map {
@@ -18,4 +18,42 @@
   width:1200px;
   height:800px;
   opacity: 0;
+}
+#players {
+  background-color:#ffdd8a;
+  border-style:solid;
+  border-color:#c99157;
+  width:250px;
+  float:left;
+  padding:10px;
+  margin:20px;
+}
+#players li {
+  list-style: none;
+  margin:2px;
+  padding-left:5px;
+}
+#main {
+  position:relative;
+  width:1600px;
+  height:900px;
+}
+
+#status {
+  background-color:#d2aa77;
+  border-style:solid;
+  border-color:#c99157;
+  width:250px;
+  float:left;
+  padding:10px;
+  margin:20px;
+}
+#title {
+  text-align:center;
+  margin:1px;
+
+
+}
+body {
+    margin:0;
 }

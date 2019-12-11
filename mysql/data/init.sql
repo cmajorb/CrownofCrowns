@@ -19,9 +19,23 @@ CREATE TABLE `Map` (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `Users` (
+  `ID` int(11) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `House` varchar(50) DEFAULT NULL,
+  `Color` varchar(10) DEFAULT NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOAD DATA INFILE '/docker-entrypoint-initdb.d/map.csv'
 INTO TABLE Map
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/users.csv'
+INTO TABLE Users
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'

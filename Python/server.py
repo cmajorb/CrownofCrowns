@@ -5,6 +5,7 @@ from argparse import ArgumentParser
 from flask_restful import Api
 from get_map_locations import get_map_locations
 from purchase import purchase
+from get_players import get_players
 # Set ''default'' parameters for database connections
 params = {'user': 'root',
           'host': 'db',
@@ -37,10 +38,11 @@ client = None
 def main():
     return "<html><h1>Home</h1></html>"
 
-#api.add_resource(get_mapppings, '/get_mappings', methods=['GET'])
 api.add_resource(get_map_locations, '/get_map_locations',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 api.add_resource(purchase, '/purchase',
+                 methods=['GET'], resource_class_kwargs={"db_params": params})
+api.add_resource(get_players, '/get_players',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 
 app.debug = True
