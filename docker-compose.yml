@@ -6,6 +6,8 @@ services:
       - db
     ports:
       - "9000:9000"
+    volumes:
+      - ./Python:/app
   db:
     build: ./mysql
   home:

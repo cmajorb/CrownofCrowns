@@ -57,6 +57,11 @@ function generateMap() {
   });
 }
 
+function updateStats() {
+  $.getJSON('http://localhost:9000/get_player_stats', function(data) {
+    $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
+  });
+}
 window.onload = function() {
     var map = document.getElementById("map");
     var ctx = map.getContext("2d");
@@ -112,7 +117,16 @@ $('#colorgrid').click(function(e) {
       }
     }
     $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount=1&player=1', function(data) {
-      $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
+      $("#messages").html(data.message);
+      switch(data.type) {
+        case "error":
+          $("#messages").css("color","red");
+          break;
+        case "success":
+          $("#messages").css("color","green");
+          break;
+      }
+      updateStats();
       generateMap();
     });
     //alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
@@ -120,10 +134,7 @@ $('#colorgrid').click(function(e) {
 
 $(document).ready(function(){
   generateMap();
-  $.getJSON('http://localhost:9000/get_player_stats', function(data) {
-    $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
-
-  });
+  updateStats();
   $.getJSON('http://localhost:9000/get_players', function(data) {
     for(i = 0; i<data.length; i++) {
       data[i].Name;
