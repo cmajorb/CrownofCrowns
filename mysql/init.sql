@@ -21,6 +21,8 @@ CREATE TABLE `Map` (
 
 CREATE TABLE `Users` (
   `ID` int(11) DEFAULT NULL,
+  `Game` int(11) DEFAULT NULL,
+  `PlayerId` int(11) DEFAULT NULL,
   `Name` varchar(50) DEFAULT NULL,
   `House` varchar(50) DEFAULT NULL,
   `Color` varchar(10) DEFAULT NULL,
@@ -29,7 +31,13 @@ CREATE TABLE `Users` (
   `Food` int(11) DEFAULT NULL,
   `Supplies` int(11) DEFAULT NULL
 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `GameState` (
+  `ID` int(11) DEFAULT NULL,
+  `RequiredActions` int(5) DEFAULT NULL,
+  `CurrentTurn` int(5) DEFAULT NULL,
+  `PlayerCount` int(5) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -42,6 +50,13 @@ IGNORE 1 ROWS;
 
 LOAD DATA INFILE '/docker-entrypoint-initdb.d/users.csv'
 INTO TABLE Users
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/gamestate.csv'
+INTO TABLE GameState
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'

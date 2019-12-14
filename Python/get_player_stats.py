@@ -14,8 +14,12 @@ class get_player_stats(Resource):
     def get(self):
             conn = sql.connect(user=self.user_, host=self.host_, db=self.db_, passwd=self.pass_,cursorclass=sql.cursors.DictCursor)
             cursor = conn.cursor()
-            query_row_string = """SELECT * from Users WHERE ID=1;"""
-            cursor.execute(query_row_string)
+            query1 = "SELECT CurrentTurn FROM GameState WHERE ID=1;"
+            cursor.execute(query1)
+            row = cursor.fetchall()
+
+            query2 = "SELECT * FROM Users WHERE ID="+str(row[0]['CurrentTurn'])+";"
+            cursor.execute(query2)
             row = cursor.fetchall()
             response = Response(json.dumps(row), status=200, mimetype='application/json')
             return response

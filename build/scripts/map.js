@@ -1,3 +1,4 @@
+var currentTurn;
 function findPos(obj) {
     var curleft = 0, curtop = 0;
     if (obj.offsetParent) {
@@ -21,8 +22,9 @@ function generateMap() {
     var i;
     loc = data;
 
-    var canvas = document.getElementById('map');
+    var canvas = document.getElementById('drawmap');
     var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
     var radius = 7;
     var xcoor;
     var ycoor;
@@ -33,25 +35,17 @@ function generateMap() {
         ycoor = data[i].Location1.split(",")[1];
         context.beginPath();
         context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = 'green';
+        context.fillStyle = "white";
+        context.strokeStyle = data[i].IColor;
+        context.lineWidth = 3;
         context.fill();
         context.stroke();
 
-        xcoor = data[i].Location2.split(",")[0];
-        ycoor = data[i].Location2.split(",")[1];
-        context.beginPath();
-        context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = 'yellow';
-        context.fill();
-        context.stroke();
-
-        xcoor = data[i].Location3.split(",")[0];
-        ycoor = data[i].Location3.split(",")[1];
-        context.beginPath();
-        context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = 'red';
-        context.fill();
-        context.stroke();
+        context.font = '8pt Calibri';
+        context.fillStyle = 'black';
+        context.textAlign = 'center';
+        ycoor = ycoor-(-4);
+        context.fillText(data[i].Influence, xcoor, ycoor);
       }
     }
   });
@@ -61,6 +55,33 @@ function updateStats() {
   $.getJSON('http://localhost:9000/get_player_stats', function(data) {
     $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
   });
+}
+
+function updateGameState() {
+  $.getJSON('http://localhost:9000/get_gamestate', function(data) {
+    currentTurn = data[0].CurrentTurn;
+    $("#"+data[0].CurrentTurn).css("background-color","#DCDCDC");
+  });
+
+}
+
+function endturn() {
+  $.getJSON('http://localhost:9000/get_gamestate?endturn=1', function(data) {
+    currentTurn = data[0].CurrentTurn;
+
+    for(var i =1;i<=data[0].PlayerCount;i++) {
+      if(i == data[0].CurrentTurn) {
+        $("#"+i).css("background-color","#DCDCDC");
+      }
+      else {
+        $("#"+i).css("background-color","transparent");
+      }
+    }
+    if(data!=null) {
+      updateStats();
+    }
+  });
+  //alert("ending turn");
 }
 window.onload = function() {
     var map = document.getElementById("map");
@@ -116,7 +137,7 @@ $('#colorgrid').click(function(e) {
         var influence = loc[i].Influence;
       }
     }
-    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&amount=1&player=1', function(data) {
+    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&player='+currentTurn, function(data) {
       $("#messages").html(data.message);
       switch(data.type) {
         case "error":
@@ -134,12 +155,18 @@ $('#colorgrid').click(function(e) {
 
 $(document).ready(function(){
   generateMap();
-  updateStats();
+
   $.getJSON('http://localhost:9000/get_players', function(data) {
     for(i = 0; i<data.length; i++) {
       data[i].Name;
-      $("#playerList").append("<li style='border-left: 20px solid; border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></li>");
+      $("#playerList").append("<li id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></li>");
+
+    }
+    if(data!=null) {
+      updateGameState();
 
     }
   });
+  updateStats();
+
 });

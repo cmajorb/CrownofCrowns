@@ -7,7 +7,7 @@
   border-style:solid;
   margin:10px;
 }
-#map,#colorgrid{
+#map,#colorgrid,#drawmap{
   position:absolute; top:0px; left:0px;
 
 }
@@ -17,10 +17,16 @@
   height:800px;
 }
 #colorgrid {
-  z-index: 2;
+  z-index: 3;
   width:1200px;
   height:800px;
   opacity: 0;
+}
+#drawmap {
+  z-index: 2;
+  width:1200px;
+  height:800px;
+  
 }
 #players {
   background-color:#ffdd8a;
@@ -64,4 +70,7 @@
 body {
     margin:0;
     background-image: url("http://localhost/images/background.jpeg");
+}
+#playerlist li {
+  border-left: 20px solid;
 }
