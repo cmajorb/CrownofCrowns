@@ -8,6 +8,7 @@ from purchase import purchase
 from get_players import get_players
 from get_player_stats import get_player_stats
 from get_gamestate import get_gamestate
+from purchaseunit import purchaseunit
 # Set ''default'' parameters for database connections
 params = {'user': 'root',
           'host': 'db',
@@ -49,6 +50,8 @@ api.add_resource(get_players, '/get_players',
 api.add_resource(get_player_stats, '/get_player_stats',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 api.add_resource(get_gamestate, '/get_gamestate',
+                 methods=['GET'], resource_class_kwargs={"db_params": params})
+api.add_resource(purchaseunit, '/purchaseunit',
                  methods=['GET'], resource_class_kwargs={"db_params": params})
 
 app.debug = True

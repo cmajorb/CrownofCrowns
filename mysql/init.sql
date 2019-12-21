@@ -29,7 +29,8 @@ CREATE TABLE `Users` (
   `Influence` int(11) DEFAULT NULL,
   `Dentre` int(11) DEFAULT NULL,
   `Food` int(11) DEFAULT NULL,
-  `Supplies` int(11) DEFAULT NULL
+  `Supplies` int(11) DEFAULT NULL,
+  `ActionTokens` int(11) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -40,6 +41,21 @@ CREATE TABLE `GameState` (
   `PlayerCount` int(5) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Units` (
+  `ID` int(11) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Type` varchar(50) DEFAULT NULL,
+  `Mercenary` int(5) DEFAULT NULL,
+  `Cost` int(5) DEFAULT NULL,
+  `OpenBattle` int(5) DEFAULT NULL,
+  `SiegeBattle` int(5) DEFAULT NULL,
+  `MarineBattle` int(5) DEFAULT NULL,
+  `SpecialAbilities` varchar(255) DEFAULT NULL
+
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 LOAD DATA INFILE '/docker-entrypoint-initdb.d/map.csv'
 INTO TABLE Map
@@ -57,6 +73,13 @@ IGNORE 1 ROWS;
 
 LOAD DATA INFILE '/docker-entrypoint-initdb.d/gamestate.csv'
 INTO TABLE GameState
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/units.csv'
+INTO TABLE Units
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'

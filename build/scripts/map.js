@@ -25,14 +25,14 @@ function generateMap() {
     var canvas = document.getElementById('drawmap');
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var radius = 7;
+    var radius = 6;
     var xcoor;
     var ycoor;
 
     for(i = 0; i<data.length; i++) {
       if(data[i].Influence > 0) {
-        xcoor = data[i].Location1.split(",")[0];
-        ycoor = data[i].Location1.split(",")[1];
+        xcoor = (data[i].Location1.split(",")[0]/1200)*canvas.width;
+        ycoor = (data[i].Location1.split(",")[1]/800)*canvas.height;
         context.beginPath();
         context.arc(xcoor, ycoor, radius, 0, 2 * Math.PI, false);
         context.fillStyle = "white";
@@ -41,10 +41,10 @@ function generateMap() {
         context.fill();
         context.stroke();
 
-        context.font = '8pt Calibri';
+        context.font = '7pt Calibri';
         context.fillStyle = 'black';
         context.textAlign = 'center';
-        ycoor = ycoor-(-4);
+        ycoor = ycoor-(-3);
         context.fillText(data[i].Influence, xcoor, ycoor);
       }
     }
@@ -53,14 +53,14 @@ function generateMap() {
 
 function updateStats() {
   $.getJSON('http://localhost:9000/get_player_stats', function(data) {
-    $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>");
+    $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>"+"<li>Action Tokens: "+data[0].ActionTokens+"</li>");
   });
 }
 
 function updateGameState() {
   $.getJSON('http://localhost:9000/get_gamestate', function(data) {
     currentTurn = data[0].CurrentTurn;
-    $("#"+data[0].CurrentTurn).css("background-color","#DCDCDC");
+    $("#"+data[0].CurrentTurn).parent().css("background-color","#DCDCDC");
   });
 
 }
@@ -71,17 +71,37 @@ function endturn() {
 
     for(var i =1;i<=data[0].PlayerCount;i++) {
       if(i == data[0].CurrentTurn) {
-        $("#"+i).css("background-color","#DCDCDC");
+        $("#"+i).parent().css("background-color","#DCDCDC");
       }
       else {
-        $("#"+i).css("background-color","transparent");
+        $("#"+i).parent().css("background-color","#ffdd8a");
       }
     }
     if(data!=null) {
       updateStats();
     }
   });
-  //alert("ending turn");
+
+  $.getJSON('http://localhost:9000/get_players', function(data) {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for(i = 0; i<data.length; i++) {
+      //data[i].Name;
+      //$("#top-bar").html("<button type='button' class='collapsible' style='height: 50px;'><p id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></p><p>Influence: "+data[i].Influence+"</p><p>Dentre: "+data[i].Dentre+"</p><p>Food: "+data[i].Food+"</p><p>Supplies: "+data[i].Supplies+"</p></button>");
+      coll[i].innerHTML = "<p id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></p><p>Influence: "+data[i].Influence+"</p><p>Dentre: "+data[i].Dentre+"</p><p>Food: "+data[i].Food+"</p><p>Supplies: "+data[i].Supplies+"</p></button>";
+
+    }
+  });
+}
+
+function purchaseunit() {
+  $.getJSON('http://localhost:9000/purchaseunit?player='+currentTurn, function(data) {
+      $('#cards').empty();
+      for(var i=0;i<data.length;i++) {
+        $('#cards').append('<img src="images/unit'+data[i].ID+'.png">');
+
+      }
+  });
 }
 window.onload = function() {
     var map = document.getElementById("map");
@@ -89,14 +109,14 @@ window.onload = function() {
     var img = new Image();
 
     img.src = "images/map.png";
-   ctx.drawImage(img, 0, 0,1200,800);
+   ctx.drawImage(img, 0, 0,960,640);
 
    var colorgrid = document.getElementById("colorgrid");
    var ctx2 = colorgrid.getContext("2d");
    var img2 = new Image();
 
    img2.src = "images/colormap.png";
-  ctx2.drawImage(img2, 0, 0,1200,800);
+  ctx2.drawImage(img2, 0, 0,960,640);
 };
 
 $('#colorgrid').mousemove(function(e) {
@@ -154,17 +174,30 @@ $('#colorgrid').click(function(e) {
 });
 
 $(document).ready(function(){
+  $('#buycard').popup();
   generateMap();
 
   $.getJSON('http://localhost:9000/get_players', function(data) {
     for(i = 0; i<data.length; i++) {
       data[i].Name;
-      $("#playerList").append("<li id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></li>");
+      $("#top-bar").append("<button type='button' class='collapsible' style='height: 50px; border-color: "+data[i].Color+"'><p id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></p><p>Influence: "+data[i].Influence+"</p><p>Dentre: "+data[i].Dentre+"</p><p>Food: "+data[i].Food+"</p><p>Supplies: "+data[i].Supplies+"</p></button>");
 
     }
     if(data!=null) {
       updateGameState();
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
 
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          if (this.style.height === "50px") {
+            this.style.height = "200px";
+          } else {
+            this.style.height = "50px";
+          }
+        });
+      }
     }
   });
   updateStats();

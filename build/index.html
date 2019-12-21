@@ -1,29 +1,86 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="scripts/jquery.min.js"></script>
   </head>
   <body>
     <div id="main">
       <div id="title">
         <h1>Crown of Crowns</h1>
       </div>
-      <div id="wrapper">
-        <canvas id="drawmap" width="1200" height="800"></canvas>
-        <canvas id="map" width="1200" height="800"></canvas>
-        <canvas id="colorgrid" width="1200" height="800"></canvas>
-      </div>
-      <div id="players">
-        <h3>Players</h3>
-        <ul id="playerList">
+      <div id="top-bar" class="sidebar">
 
-        </ul>
-        <button type="button" onclick="endturn()">End Turn</button>
       </div>
-      <div class="tile"><h3>Information</h3><p id="messages">...</p><div id="status"><p>Loading...</p></div></div>
-      <div class="tile"><h3>Stats</h3><ul id="stats"></ul></div>
+      <div id="wrapper">
+        <canvas id="drawmap" width="960" height="640"></canvas>
+        <canvas id="map" width="960" height="640"></canvas>
+        <canvas id="colorgrid" width="960" height="640"></canvas>
+      </div>
+      <div id="left-bar" class="sidebar">
+        <div class="tile">
+          <h3>Stats</h3>
+          <ul id="stats"></ul>
+          <button type="button" class="buycard_open" onclick="purchaseunit()">Purchase Unit</button>
+          <button type="button" onclick="endturn()">End Turn</button>
+
+        </div>
+
+      </div>
+      <div id="right-bar" class="sidebar">
+        <div class="tile">
+          <h3>Information</h3>
+          <p id="messages">...</p>
+          <div id="status">
+            <p>Loading...</p>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="card_container">
+        <ul>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+        </ul>
+          </div>
+        </div>
+      </div>
+      <div id="bottom-bar" class="sidebar">
+        <div class="tile">
+          <div class="card_container">
+        <ul>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+        </ul>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="card_container">
+        <ul>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+            <li><img src="images/unit1.png" class="card"></li>
+        </ul>
+          </div>
+        </div>
+      </div>
+
+
 
     </div>
+
+
+    <div id="buycard">
+      <div id="cards">
+
+      </div>
+      <!-- Add a button to close the popup (optional) -->
+      <button class="buycard_close">Close</button>
+    </div>
     <script src="scripts/map.js"></script>
+    <script src="scripts/jquery.popupoverlay.min.js"></script>
   </body>
 </html>

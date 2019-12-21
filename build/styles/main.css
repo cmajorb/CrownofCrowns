@@ -1,11 +1,11 @@
 
 #wrapper{
-  float:left;
-  position:relative;
-  width:1200px;
-  height:800px;
+  position:absolute;
+  width:960px;
+  height:640px;
   border-style:solid;
-  margin:10px;
+  margin:5px;
+  left:20%;
 }
 #map,#colorgrid,#drawmap{
   position:absolute; top:0px; left:0px;
@@ -13,39 +13,19 @@
 }
 #map {
   z-index: 1;
-  width:1200px;
-  height:800px;
 }
 #colorgrid {
   z-index: 3;
-  width:1200px;
-  height:800px;
   opacity: 0;
 }
 #drawmap {
   z-index: 2;
-  width:1200px;
-  height:800px;
-  
-}
-#players {
-  background-color:#ffdd8a;
-  border-style:solid;
-  border-color:#c99157;
-  width:250px;
-  float:left;
-  padding:10px;
-  margin:20px;
-}
-#players li {
-  list-style: none;
-  margin:2px;
-  padding-left:5px;
+
 }
 #main {
   position:relative;
-  width:1600px;
-  height:900px;
+  width:1650px;
+  height:1070px;
 }
 
 .tile {
@@ -56,6 +36,7 @@
   float:left;
   padding:10px;
   margin:20px;
+  overflow:hidden;
 }
 #title {
   text-align:center;
@@ -64,8 +45,6 @@
   -webkit-text-stroke-color: black;
   background-color:rgba(0, 0, 0,  0.1);
   color:white;
-
-
 }
 body {
     margin:0;
@@ -73,4 +52,94 @@ body {
 }
 #playerlist li {
   border-left: 20px solid;
+}
+
+#buycard {
+  background-color:#101010;
+  width:950px;
+  height:300px;
+}
+#buycard img {
+  width: 240px;
+  height:250px;
+  float:left;
+  margin:20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+#cards {
+  margin-left:10px;
+  margin-top:10px;
+}
+.buycard_close {
+  float:right;
+}
+
+.card_container li {
+  height: 35px;
+  z-index: 0;
+  position: relative;
+  list-style: none;
+  transition: transform .2s ease-in-out;
+
+}
+
+.card{
+  width: 240px;
+  height:250px;
+}
+.card_container ul {
+    margin:0px;
+	padding:5px;
+}
+.card_container li:hover {
+  transform: translate3d(0px, -15px, 0px);
+
+}
+#top-bar {
+  width:99.1%;
+  height:12%;
+  z-index: 9;
+
+}
+#right-bar {
+  width:20%;
+  height:62%;
+  position:absolute;
+  right:0px;
+}
+#left-bar {
+  width:19%;
+  height:62%;
+  position:absolute;
+  left:0px;
+}
+#bottom-bar {
+  width:99.1%;
+  height:19%;
+  position:absolute;
+  bottom: 0;
+}
+.sidebar {
+  border-style:solid;
+  border-color:#111;
+  border-width:7px;
+  background-image: url("http://localhost/images/stone.jpeg");
+  margin:0px;
+}
+.collapsible {
+  background-color:#ffdd8a;
+  border-style:solid;
+  width:250px;
+  float:left;
+  padding:5px;
+  margin:20px;
+  cursor: pointer;
+  height:50px;
+  z-index: 10;
+  position:relative;
+  border-width: 5px;
+}
+.active, .collapsible:hover {
+  background-color: #ffff8b;
 }
