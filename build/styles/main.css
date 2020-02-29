@@ -48,7 +48,7 @@
 }
 body {
     margin:0;
-    background-image: url("http://localhost/images/background.jpeg");
+    background-image: url("/images/background.jpeg");
 }
 #playerlist li {
   border-left: 20px solid;
@@ -57,15 +57,13 @@ body {
 #buycard {
   background-color:#101010;
   width:950px;
-  height:300px;
+  height:400px;
 }
 #buycard img {
   width: 240px;
   height:250px;
   float:left;
   margin:20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 #cards {
   margin-left:10px;
@@ -73,6 +71,11 @@ body {
 }
 .buycard_close {
   float:right;
+  background-color: #9e0025;
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin:15px;
 }
 
 .card_container li {
@@ -85,6 +88,10 @@ body {
 }
 
 .card{
+  width: 240px;
+  height:250px;
+}
+.purchaseCard{
   width: 240px;
   height:250px;
 }
@@ -124,7 +131,7 @@ body {
   border-style:solid;
   border-color:#111;
   border-width:7px;
-  background-image: url("http://localhost/images/stone.jpeg");
+  background-image: url("/images/stone.jpeg");
   margin:0px;
 }
 .collapsible {
@@ -142,4 +149,34 @@ body {
 }
 .active, .collapsible:hover {
   background-color: #ffff8b;
+}
+.selected {
+  border: 2px solid yellow;
+}
+#selectedCard {
+
+  width:250px;
+  float:left;
+  padding:10px;
+  margin:20px;
+}
+.purchaseSelected {
+  border: 2px solid yellow;
+
+}
+.buycard_purchase {
+  position:absolute;
+  width:20px;
+  bottom:20px;
+  margin: auto;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 14px 40px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.buycard_purchase:hover {
+  background-color: white; /* Green */
+  color: black;
 }

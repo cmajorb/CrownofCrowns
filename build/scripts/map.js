@@ -1,4 +1,6 @@
 var currentTurn;
+var full = false;
+var path = 'http://ec2-3-82-155-197.compute-1.amazonaws.com';
 function findPos(obj) {
     var curleft = 0, curtop = 0;
     if (obj.offsetParent) {
@@ -18,7 +20,7 @@ function rgbToHex(r, g, b) {
 }
 
 function generateMap() {
-  $.getJSON('http://localhost:9000/get_map_locations', function(data) {
+  $.getJSON(path+':9000/get_map_locations', function(data) {
     var i;
     loc = data;
 
@@ -52,13 +54,13 @@ function generateMap() {
 }
 
 function updateStats() {
-  $.getJSON('http://localhost:9000/get_player_stats', function(data) {
+  $.getJSON(path+':9000/get_player_stats', function(data) {
     $("#stats").html("<li>Influence: "+data[0].Influence+"</li>"+"<li>Dentre: "+data[0].Dentre+"</li>"+"<li>Food: "+data[0].Food+"</li>"+"<li>Supplies: "+data[0].Supplies+"</li>"+"<li>Action Tokens: "+data[0].ActionTokens+"</li>");
   });
 }
 
 function updateGameState() {
-  $.getJSON('http://localhost:9000/get_gamestate', function(data) {
+  $.getJSON(path+':9000/get_gamestate', function(data) {
     currentTurn = data[0].CurrentTurn;
     $("#"+data[0].CurrentTurn).parent().css("background-color","#DCDCDC");
   });
@@ -66,7 +68,7 @@ function updateGameState() {
 }
 
 function endturn() {
-  $.getJSON('http://localhost:9000/get_gamestate?endturn=1', function(data) {
+  $.getJSON(path+':9000/get_gamestate?endturn=1', function(data) {
     currentTurn = data[0].CurrentTurn;
 
     for(var i =1;i<=data[0].PlayerCount;i++) {
@@ -82,7 +84,7 @@ function endturn() {
     }
   });
 
-  $.getJSON('http://localhost:9000/get_players', function(data) {
+  $.getJSON(path+':9000/get_players', function(data) {
     var coll = document.getElementsByClassName("collapsible");
     var i;
     for(i = 0; i<data.length; i++) {
@@ -95,10 +97,10 @@ function endturn() {
 }
 
 function purchaseunit() {
-  $.getJSON('http://localhost:9000/purchaseunit?player='+currentTurn, function(data) {
+  $.getJSON(path+':9000/purchaseunit?player='+currentTurn, function(data) {
       $('#cards').empty();
       for(var i=0;i<data.length;i++) {
-        $('#cards').append('<img src="images/unit'+data[i].ID+'.png">');
+        $('#cards').append('<img src="images/unit'+data[i].ID+'.png" class="purchaseCard">');
 
       }
   });
@@ -157,7 +159,7 @@ $('#colorgrid').click(function(e) {
         var influence = loc[i].Influence;
       }
     }
-    $.getJSON('http://localhost:9000/purchase?item=1&location='+id+'&player='+currentTurn, function(data) {
+    $.getJSON(path+':9000/purchase?item=1&location='+id+'&player='+currentTurn, function(data) {
       $("#messages").html(data.message);
       switch(data.type) {
         case "error":
@@ -172,12 +174,35 @@ $('#colorgrid').click(function(e) {
     });
     //alert(name + " ("+group+")\nGeography: "+geo+"\nDefense: "+def+"\nMilitary Cards: "+mil+"\nAction Cards: "+act+"\nResource Cards: "+res+"\n"+coord);
 });
+$(document).on('click','.purchaseCard',function(){
+  $(this).toggleClass('purchaseSelected');
 
+});
+ $(document).on('click','.card',function(){
+   $(this).toggleClass('selected');
+
+   if(full==false) {
+    full = true;
+    $(this).clone().appendTo("#selectedCard");
+    $(this).toggleClass('selected');
+
+  } else if(full==true && $(this).hasClass("selected")){
+    $("#selectedCard").empty();
+    $(this).clone().appendTo("#selectedCard");
+    $(this).toggleClass('selected');
+
+  } else {
+    $("#selectedCard").empty();
+    full = false;
+    $(".card").removeClass('selected');
+  }
+   //$(".card_container").parent().css("overflow","visible");
+});
 $(document).ready(function(){
   $('#buycard').popup();
   generateMap();
 
-  $.getJSON('http://localhost:9000/get_players', function(data) {
+  $.getJSON(path+':9000/get_players', function(data) {
     for(i = 0; i<data.length; i++) {
       data[i].Name;
       $("#top-bar").append("<button type='button' class='collapsible' style='height: 50px; border-color: "+data[i].Color+"'><p id='"+data[i].ID+"'style='border-color:"+data[i].Color+"'>"+data[i].Name+" <i>("+data[i].House+")</i></p><p>Influence: "+data[i].Influence+"</p><p>Dentre: "+data[i].Dentre+"</p><p>Food: "+data[i].Food+"</p><p>Supplies: "+data[i].Supplies+"</p></button>");
